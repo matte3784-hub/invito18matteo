@@ -227,10 +227,10 @@
             line-height: 1.4;
         }
 
-        /* --- NUOVO DESIGN COMPATTO: Mat | 18 | teo --- */
+        /* --- CONTENITORE COMPATTO: Mat | 18 | teo --- */
         .hero-group {
             position: relative;
-            height: 100px; /* Ridotta l'altezza complessiva */
+            height: 90px; /* Altezza ottimizzata */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -245,63 +245,64 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px; /* Ridotto lo spazio per renderlo compatto e leggibile di fila */
+            gap: 12px; /* Spazio calibrato per non accavallare il 18 */
             z-index: 1;
             pointer-events: none;
         }
 
         /* Testo scalato per evitare overflow */
         .name-part {
-            font-size: 2.3rem; /* Ridimensionato per stare sempre in linea */
+            font-size: 2.2rem; 
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.5); /* Ottima opacità per farlo leggere insieme al 18 */
+            color: rgba(255, 255, 255, 0.5); /* Perfetta fusione con il design globale */
             text-transform: uppercase;
             letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        /* EFFETTO NEON ILLUMINATO SULLE PIPE */
+        /* EFFETTO NEON ULTRA-DEFINITO E VISIBILE SULLE PIPE */
         .pipe-divider {
-            font-size: 2.1rem;
-            font-weight: 300;
+            font-size: 2.3rem;
+            font-weight: 700; /* Leggermente più spesso per risaltare al massimo */
             color: #ffffff;
             user-select: none;
-            /* Bagliore al neon bianco/argenteo continuo */
+            /* Bagliore neon bianco/argento potenziato */
             text-shadow: 
-                0 0 5px #ffffff,
-                0 0 10px #ffffff,
-                0 0 20px rgba(255, 255, 255, 0.8),
-                0 0 30px rgba(255, 255, 255, 0.6);
+                0 0 8px #ffffff,
+                0 0 15px #ffffff,
+                0 0 25px rgba(255, 255, 255, 0.9),
+                0 0 35px rgba(255, 255, 255, 0.7);
             animation: neon-flicker 3s infinite alternate;
+            z-index: 3; /* Portato sopra al livello generale per totale visibilità */
         }
 
-        /* Leggero sfarfallio tipico del neon */
+        /* Sfarfallio realistico del neon */
         @keyframes neon-flicker {
             0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
                 text-shadow: 
-                    0 0 5px #ffffff,
-                    0 0 10px #ffffff,
-                    0 0 15px rgba(255, 255, 255, 0.8),
-                    0 0 25px rgba(255, 255, 255, 0.6);
+                    0 0 8px #ffffff,
+                    0 0 15px #ffffff,
+                    0 0 25px rgba(255, 255, 255, 0.9),
+                    0 0 35px rgba(255, 255, 255, 0.7);
                 opacity: 1;
             }
             20%, 24%, 55% {
                 text-shadow: none;
-                opacity: 0.7;
+                opacity: 0.75;
             }
         }
 
-        /* Il 18 sta esattamente in mezzo, ridimensionato proporzionalmente */
+        /* Il 18 sta esattamente in mezzo, rimpicciolito per dare totale visibilità alle pipe */
         .number-18-foreground {
             position: absolute;
-            font-size: 5.2rem; /* Scalato per non sormontare eccessivamente le scritte */
+            font-size: 4.2rem; /* Perfettamente proporzionato, non tocca le barrette */
             font-weight: 950;
             background: linear-gradient(135deg, #ffffff 0%, #888888 45%, #ffffff 50%, #888888 55%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            letter-spacing: -2px;
-            z-index: 2; /* Rimane sopra ma non copre le lettere grazie alla dimensione ridotta */
+            letter-spacing: -1px;
+            z-index: 2; /* Sotto alle pipe ma sopra allo sfondo delle lettere */
             filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.2));
             pointer-events: none;
         }
@@ -440,13 +441,13 @@
     <div id="main-card">
         <div class="badge">Ti aspetto per festeggiare</div>
         
-        <!-- STRUTTURA OTTIMIZZATA: MAT | 18 | TEO CON NEON GLOW -->
+        <!-- STRUTTURA PERFETTAMENTE PROPORZIONATA CON LINEETTE NEON VISIBILI -->
         <div class="hero-group">
             <div class="name-background-container">
                 <span class="name-part">MAT</span>
                 <span class="pipe-divider">|</span>
-                <!-- Spazio trasparente calcolato precisamente per il 18 -->
-                <span class="name-part" style="opacity: 0; width: 45px;">18</span>
+                <!-- Spazio di alloggio trasparente ottimizzato a 65px per far respirare le linee -->
+                <span class="name-part" style="opacity: 0; width: 65px;">18</span>
                 <span class="pipe-divider">|</span>
                 <span class="name-part">TEO</span>
             </div>
