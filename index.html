@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>18° Compleanno di Matteo!</title>
-    <!-- Font Eleganti -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
@@ -202,17 +201,13 @@
 </head>
 <body>
 
-    <!-- AUDIO DI SOTTOFONDO (Happy Birthday di Sfera Ebbasta) -->
-    <!-- Nota: YouTube embedded invisibile usato per aggirare i blocchi audio dei browser moderni -->
-    <iframe id="audio-player" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+    <iframe id="audio-player" width="0" height="0" src="" frameborder="0" allow="autoplay; encrypted-media"></iframe>
 
-    <!-- 1. SCHERMATA DI INTRODUZIONE / ANIMAZIONE -->
     <div id="intro-screen" onclick="startReveal()">
         <p class="intro-text">Sei stato invitato...</p>
         <button class="silver-button">Apri l'invito</button>
     </div>
 
-    <!-- 2. CARD PRINCIPALE DELL'INVITO -->
     <div id="main-card">
         <div class="badge">Ti aspetto per festeggiare</div>
         <h1>MATTEO</h1>
@@ -227,13 +222,10 @@
             <span style="font-size: 0.9rem; color: #a0a0a0;">Via Etnea, 396 - Tremestieri Etneo (CT)</span>
         </div>
 
-        <!-- BOTTONI INTERATTIVI -->
         <div class="btn-container">
-            <!-- Tasto Posizione (Google Maps) -->
-            <a href="https://www.google.com/maps/search/?api=1&query=Etna+country+Via+Etnea+396+Tremestieri+Etneo" target="_blank" class="action-btn btn-map">
+            <a href="https://maps.google.com/?q=Etna+Country+Via+Etnea+396+Tremestieri+Etneo" target="_blank" class="action-btn btn-map">
                 📍 Guarda la Posizione
             </a>
-            <!-- Tasto Conferma (WhatsApp con testo precompilato) -->
             <a href="https://wa.me/393761162474?text=Confermo%20la%20mia%20presenza!" target="_blank" class="action-btn btn-confirm">
                 ✉️ Conferma Presenza
             </a>
@@ -242,21 +234,20 @@
 
     <script>
         function startReveal() {
-            // 1. Avvia la musica di Sfera Ebbasta (Happy Birthday) tramite video YouTube non visibile
             // ID del video YouTube di Happy Birthday di Sfera Ebbasta
             const youtubeId = "NfF5831_M3g"; 
             const player = document.getElementById('audio-player');
-            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+            // Forziamo l'autoplay con il click dell'utente
+            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
 
-            // 2. Nasconde la schermata iniziale con dissolvenza
+            // Nasconde la schermata iniziale con dissolvenza
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
             intro.style.visibility = 'hidden';
 
-            // 3. Mostra l'invito vero e proprio con animazione d'ingresso
+            // Mostra l'invito vero e proprio con animazione d'ingresso
             setTimeout(() => {
                 document.getElementById('main-card').classList.add('reveal');
-                // Sblocca lo scroll della pagina se necessario
                 document.body.style.overflow = 'auto';
             }, 400);
         }
