@@ -32,7 +32,7 @@
             right: 20px;
             width: 55px;
             height: 55px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.85);
             border-radius: 50%;
             display: flex;
@@ -40,13 +40,9 @@
             align-items: center;
             cursor: pointer;
             z-index: 100;
-            opacity: 0;
+            opacity: 1;
             transition: all 0.5s ease;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-        }
-
-        #music-control.visible {
-            opacity: 1;
         }
 
         #music-control i {
@@ -155,7 +151,7 @@
             100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
         }
 
-        /* --- CARD PRINCIPALE IN GRANDISSIMO --- */
+        /* --- CARD PRINCIPALE --- */
         #main-card {
             max-width: 460px;
             width: 92%;
@@ -185,37 +181,41 @@
             margin-bottom: 20px;
         }
 
-        /* --- NUOVO GRUPPO VERTICALE: 18 SOPRA, MATTEO SOTTO --- */
+        /* --- SOVRAPPOSIZIONE 3D: 18 DIETRO, MATTEO DAVANTI --- */
         .hero-group {
+            position: relative;
+            height: 180px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
         }
 
-        /* Il 18 sta sopra ed è enorme */
-        .number-18-top {
-            font-size: 8.5rem;
+        /* Il 18 sta dietro in grande d'argento */
+        .number-18-bg {
+            position: absolute;
+            font-size: 11rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 0%, #777777 45%, #ffffff 50%, #777777 55%, #ffffff 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.03) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            letter-spacing: -3px;
-            filter: drop-shadow(0px 8px 20px rgba(255, 255, 255, 0.25));
-            margin-bottom: 5px;
+            letter-spacing: -6px;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.08));
         }
 
-        /* Matteo sta subito sotto */
-        .name-under {
-            font-size: 4.2rem;
+        /* Matteo sta sopra al 18 */
+        .name-foreground {
+            position: relative;
+            font-size: 4rem;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: -1px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 0 25px rgba(255,255,255,0.2);
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.95), 0 0 30px rgba(255,255,255,0.3);
             text-transform: uppercase;
-            line-height: 1;
         }
 
         .divider {
@@ -306,8 +306,8 @@
 
     <div id="yt-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px;"></div>
 
-    <div id="music-control" onclick="toggleMusic()">
-        <i id="music-icon" class="fas fa-headphones"></i>
+    <div id="music-control" class="playing" onclick="toggleMusic()">
+        <i id="music-icon" class="fas fa-volume-mute"></i>
     </div>
 
     <div id="intro-screen">
@@ -319,8 +319,8 @@
         <div class="badge">Ti aspetto per festeggiare</div>
         
         <div class="hero-group">
-            <div class="number-18-top">18</div>
-            <div class="name-under">MATTEO</div>
+            <div class="number-18-bg">18</div>
+            <div class="name-foreground">MATTEO</div>
         </div>
         
         <div class="divider"></div>
@@ -348,16 +348,17 @@
     <script>
         let player;
         let isPlaying = false;
-        const youtubeId = "JFOLJwOoorQ"; // La tua canzone "Happy Birthday" di Sfera Ebbasta
+        let audioUnlocked = false;
+        const youtubeId = "JFOLJwOoorQ"; // Sfera Ebbasta - Happy Birthday
 
-        // Inizializza il player di YouTube in modo sicuro
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
                 height: '1',
                 width: '1',
                 videoId: youtubeId,
                 playerVars: {
-                    'autoplay': 0,
+                    'autoplay': 1,      
+                    'mute': 1,          // Avvio istantaneo silenzioso per aggirare i blocchi dei browser
                     'controls': 0,
                     'disablekb': 1,
                     'fs': 0,
@@ -368,12 +369,37 @@
                     'playlist': youtubeId
                 },
                 events: {
-                    'onReady': () => { console.log("Player pronto!"); }
+                    'onReady': (event) => {
+                        console.log("Player pronto all'apertura!");
+                        event.target.playVideo();
+                    }
                 }
             });
         }
 
-        // Crea la pioggia di sfere NERE e ARGENTATE
+        // QUALSIASI tocco iniziale sullo schermo riattiva l'audio istantaneamente
+        function unlockAudio() {
+            if (!audioUnlocked && player && typeof player.unMute === 'function') {
+                player.unMute();
+                player.setVolume(100);
+                player.playVideo();
+                isPlaying = true;
+                audioUnlocked = true;
+                
+                document.getElementById('music-icon').className = "fas fa-headphones";
+                document.getElementById('music-control').classList.add('playing');
+                
+                // Rimuove i listener una volta sbloccata
+                document.removeEventListener('click', unlockAudio);
+                document.removeEventListener('touchstart', unlockAudio);
+            }
+        }
+
+        // Ascolta il primissimo tocco dell'utente sullo schermo
+        document.addEventListener('click', unlockAudio);
+        document.addEventListener('touchstart', unlockAudio);
+
+        // Pioggia di sfere NERE e ARGENTATE
         function createFallingSpheres() {
             const introScreen = document.getElementById('intro-screen');
             
@@ -387,14 +413,11 @@
                     sphere.style.height = `${size}px`;
                     sphere.style.left = `${Math.random() * 100}vw`;
                     
-                    // 50% Nere con bordo argento lucido, 50% Argento/Bianco brillante
                     if (Math.random() > 0.5) {
-                        // SFERA NERA METALLICA
                         sphere.style.backgroundColor = '#151515';
                         sphere.style.border = '2px solid #b0b0b0';
                         sphere.style.boxShadow = '0 0 12px rgba(255, 255, 255, 0.2)';
                     } else {
-                        // SFERA ARGENTATA LUMINOSA
                         sphere.style.backgroundColor = '#e0e0e0';
                         sphere.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
                     }
@@ -416,22 +439,17 @@
         });
 
         function startReveal() {
-            // Sblocca e avvia la canzone di Sfera Ebbasta direttamente tramite l'azione del click
-            if (player && typeof player.playVideo === 'function') {
-                player.playVideo();
-                isPlaying = true;
+            // Se non è stato sbloccato prima con un tocco generico, lo sblocca qui
+            if (!audioUnlocked) {
+                unlockAudio();
             }
-            
-            // Attiva il tasto cuffie in alto a destra
-            const musicControl = document.getElementById('music-control');
-            musicControl.classList.add('visible', 'playing');
 
-            // Avvia la dissolvenza
+            // Dissolvenza dell'intro
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
             intro.style.visibility = 'hidden';
 
-            // Mostra la card dell'invito
+            // Mostra la card
             setTimeout(() => {
                 document.getElementById('main-card').classList.add('reveal');
                 document.body.style.overflow = 'auto';
@@ -443,14 +461,15 @@
             const musicControl = document.getElementById('music-control');
 
             if (isPlaying) {
-                if (player && typeof player.pauseVideo === 'function') {
-                    player.pauseVideo();
+                if (player && typeof player.mute === 'function') {
+                    player.mute();
                 }
                 musicIcon.className = "fas fa-volume-mute";
                 musicControl.classList.remove('playing');
                 isPlaying = false;
             } else {
-                if (player && typeof player.playVideo === 'function') {
+                if (player && typeof player.unMute === 'function') {
+                    player.unMute();
                     player.playVideo();
                 }
                 musicIcon.className = "fas fa-headphones";
