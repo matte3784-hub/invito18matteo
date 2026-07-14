@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18° Compleanno di Matteo!</title>
+    <!-- Font Eleganti -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* --- SCHERMATA DI INTRODUZIONE / ANIMAZIONE --- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 1s ease-out, visibility 1s;
+            cursor: pointer;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .silver-button {
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 50%, #9e9e9e 100%);
+            color: #000;
+            font-weight: 900;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+        }
+
+        .intro-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #cccccc;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* --- CONTENUTO PRINCIPALE DELL'INVITO --- */
+        #main-card {
+            max-width: 450px;
+            width: 90%;
+            background: linear-gradient(145deg, #121212 0%, #1c1c1c 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #main-card.reveal {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .number-18 {
+            font-size: 7rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #b0b0b0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: -10px 0;
+            line-height: 1;
+            filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.2));
+        }
+
+        .divider {
+            height: 2px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            margin: 20px auto;
+        }
+
+        .date {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .location-info {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .location-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        /* --- BOTTONI DI AZIONE --- */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .action-btn {
+            display: block;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        /* Bottone Posizione */
+        .btn-map {
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-map:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Bottone Conferma */
+        .btn-confirm {
+            background: linear-gradient(135deg, #ffffff 0%, #a6a6a6 100%);
+            color: #000000;
+            border: none;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-confirm:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO DI SOTTOFONDO (Happy Birthday di Sfera Ebbasta) -->
+    <!-- Nota: YouTube embedded invisibile usato per aggirare i blocchi audio dei browser moderni -->
+    <iframe id="audio-player" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+
+    <!-- 1. SCHERMATA DI INTRODUZIONE / ANIMAZIONE -->
+    <div id="intro-screen" onclick="startReveal()">
+        <p class="intro-text">Sei stato invitato...</p>
+        <button class="silver-button">Apri l'invito</button>
+    </div>
+
+    <!-- 2. CARD PRINCIPALE DELL'INVITO -->
+    <div id="main-card">
+        <div class="badge">Ti aspetto per festeggiare</div>
+        <h1>MATTEO</h1>
+        <div class="number-18">18</div>
+        <div class="divider"></div>
+        
+        <div class="date">30 AGOSTO</div>
+        
+        <div class="location-info">
+            Presso<br>
+            <div class="location-name">Etna Country</div>
+            <span style="font-size: 0.9rem; color: #a0a0a0;">Via Etnea, 396 - Tremestieri Etneo (CT)</span>
+        </div>
+
+        <!-- BOTTONI INTERATTIVI -->
+        <div class="btn-container">
+            <!-- Tasto Posizione (Google Maps) -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Etna+country+Via+Etnea+396+Tremestieri+Etneo" target="_blank" class="action-btn btn-map">
+                📍 Guarda la Posizione
+            </a>
+            <!-- Tasto Conferma (WhatsApp con testo precompilato) -->
+            <a href="https://wa.me/393761162474?text=Confermo%20la%20mia%20presenza!" target="_blank" class="action-btn btn-confirm">
+                ✉️ Conferma Presenza
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function startReveal() {
+            // 1. Avvia la musica di Sfera Ebbasta (Happy Birthday) tramite video YouTube non visibile
+            // ID del video YouTube di Happy Birthday di Sfera Ebbasta
+            const youtubeId = "NfF5831_M3g"; 
+            const player = document.getElementById('audio-player');
+            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+
+            // 2. Nasconde la schermata iniziale con dissolvenza
+            const intro = document.getElementById('intro-screen');
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+
+            // 3. Mostra l'invito vero e proprio con animazione d'ingresso
+            setTimeout(() => {
+                document.getElementById('main-card').classList.add('reveal');
+                // Sblocca lo scroll della pagina se necessario
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+    </script>
+</body>
+</html>
