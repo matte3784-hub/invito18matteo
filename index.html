@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>18° Compleanno di Matteo!</title>
 
+    <!-- META TAG PER L'ANTEPRIMA DI CONDIVISIONE (OPEN GRAPH) -->
     <meta property="og:title" content="18° Compleanno di Matteo!" />
     <meta property="og:description" content="Sei stato invitato al 18esimo di Matteo! Clicca per aprire l'invito." />
     <meta property="og:type" content="website" />
@@ -13,6 +14,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
+    <!-- Font Eleganti e Icone -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -213,19 +215,19 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Spostato elegantemente più in basso */
+        /* "Ti aspetto per festeggiare" abbassato elegantemente */
         .badge {
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 5px;
             color: #b3b3b3;
             text-transform: uppercase;
-            margin-top: 35px; /* Abbassato ulteriormente */
+            margin-top: 35px;
             margin-bottom: 25px;
             line-height: 1.4;
         }
 
-        /* --- LAYOUT 3D: MAT | 18 | TEO --- */
+        /* --- LAYOUT RICHIESTO: Mat | 18 | teo --- */
         .hero-group {
             position: relative;
             height: 140px;
@@ -235,38 +237,44 @@
             margin-bottom: 10px;
         }
 
-        /* Nome in sottoimpressione sdoppiato e leggibile */
+        /* Struttura orizzontale "MAT |    | TEO" con pipe visibili */
         .name-background-container {
             position: absolute;
             width: 100%;
             display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            box-sizing: border-box;
-            z-index: 1; /* Sotto al 18 */
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Spazio preciso per far alloggiare il 18 al centro */
+            z-index: 1; /* Subito sotto al 18 */
             pointer-events: none;
         }
 
         .name-part {
-            font-size: 3.6rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.35); /* Molto più visibile e leggibile */
-            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.45); /* Ottima leggibilità e sottoimpressione */
             text-transform: uppercase;
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        /* Il 18 sta davanti, centrato e proporzionato */
+        .pipe-divider {
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.25);
+            user-select: none;
+        }
+
+        /* Il 18 sta esattamente in mezzo, in primo piano rispetto alle scritte */
         .number-18-foreground {
             position: absolute;
-            font-size: 7.5rem; /* Ridimensionato per essere perfetto con MAT e TEO */
+            font-size: 7.2rem; /* Perfettamente proporzionato tra le due pipe */
             font-weight: 950;
             background: linear-gradient(135deg, #ffffff 0%, #888888 45%, #ffffff 50%, #888888 55%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
             letter-spacing: -2px;
-            z-index: 2; /* Sopra a MAT e TEO */
+            z-index: 2; /* In rilievo sopra alle scritte e ai divisori */
             filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.25));
             pointer-events: none;
         }
@@ -357,12 +365,15 @@
 </head>
 <body>
 
+    <!-- CONTENITORE NASCOSTO PER YOUTUBE PLAYER API -->
     <div id="yt-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px;"></div>
 
+    <!-- CONTROLLO AUDIO IN ALTO A DESTRA -->
     <div id="music-control" onclick="toggleMusic()">
         <i id="music-icon" class="fas fa-headphones"></i>
     </div>
 
+    <!-- 1. SCHERMATA INTRO CON PIOGGIA DI SFERE E COMPARSA GRADUALE -->
     <div id="intro-screen">
         <div class="suspense-container">
             <span class="word word-1">Sei...</span>
@@ -372,12 +383,18 @@
         <button class="silver-button" onclick="startReveal()">Apri l'invito</button>
     </div>
 
+    <!-- 2. CARD PRINCIPALE -->
     <div id="main-card">
         <div class="badge">Ti aspetto per festeggiare</div>
         
+        <!-- NUOVA STRUTTURA: Mat | 18 | teo CON EFFETTO 3D -->
         <div class="hero-group">
             <div class="name-background-container">
                 <span class="name-part">MAT</span>
+                <span class="pipe-divider">|</span>
+                <!-- Spazio trasparente calcolato per lasciare intravedere il 18 in mezzo -->
+                <span class="name-part" style="opacity: 0; width: 60px;">18</span>
+                <span class="pipe-divider">|</span>
                 <span class="name-part">TEO</span>
             </div>
             <div class="number-18-foreground">18</div>
@@ -393,6 +410,7 @@
             <span style="font-size: 0.9rem; color: #a6a6a6; font-weight: 700;">Via Etnea, 396 - Tremestieri Etneo (CT)</span>
         </div>
 
+        <!-- BOTTONI INTERATTIVI -->
         <div class="btn-container">
             <a href="https://maps.google.com/?q=Etna+Country+Via+Etnea+396+Tremestieri+Etneo" target="_blank" class="action-btn btn-map">
                 <i class="fas fa-map-marker-alt"></i> Mappa Posizione
@@ -403,6 +421,7 @@
         </div>
     </div>
 
+    <!-- API di YouTube per l'avvio forzato -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
