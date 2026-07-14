@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>18° Compleanno di Matteo!</title>
+
+    <!-- META TAG PER L'ANTEPRIMA DI CONDIVISIONE (OPEN GRAPH) -->
+    <meta property="og:title" content="18° Compleanno di Matteo!" />
+    <meta property="og:description" content="Sei stato invitato al 18esimo di Matteo! Clicca per aprire l'invito." />
+    <meta property="og:type" content="website" />
+    <!-- Se hai un'immagine di anteprima caricata su GitHub, inserisci il link qui sotto al posto di anteprima.jpg -->
+    <meta property="og:image" content="anteprima.jpg" /> 
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
     <!-- Font Eleganti e Icone -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -84,11 +95,11 @@
             overflow: hidden;
         }
 
-        /* SCRITTA INIZIALE RESA GIGANTE E IMPONENTE */
+        /* SCRITTA INIZIALE GIGANTE */
         .suspense-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: 3.2rem; /* Molto più grande di prima */
+            font-size: 3.2rem;
             line-height: 1.1;
             text-transform: uppercase;
             max-width: 90%;
@@ -188,7 +199,7 @@
             letter-spacing: 5px;
             color: #b3b3b3;
             text-transform: uppercase;
-            margin-top: 25px; /* Abbassato ancora */
+            margin-top: 25px;
             margin-bottom: 25px;
             line-height: 1.4;
         }
@@ -208,9 +219,9 @@
             position: absolute;
             font-size: 4rem;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.15); /* Più scuro e fuso nello sfondo */
+            color: rgba(255, 255, 255, 0.15);
             letter-spacing: 2px;
-            z-index: 1; /* Sotto al 18 */
+            z-index: 1;
             text-transform: uppercase;
             pointer-events: none;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
@@ -226,7 +237,7 @@
             -webkit-text-fill-color: transparent;
             line-height: 1;
             letter-spacing: -4px;
-            z-index: 2; /* Sopra a Matteo */
+            z-index: 2;
             filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.25));
             pointer-events: none;
         }
