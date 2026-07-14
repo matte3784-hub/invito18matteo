@@ -84,17 +84,21 @@
             overflow: hidden;
         }
 
+        /* SCRITTA INIZIALE RESA GIGANTE E IMPONENTE */
         .suspense-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 2rem;
-            margin-bottom: 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 3.2rem; /* Molto più grande di prima */
+            line-height: 1.1;
+            text-transform: uppercase;
+            max-width: 90%;
+            margin-bottom: 45px;
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             animation: fadeInUp 1.2s forwards 0.3s;
-            letter-spacing: 2px;
+            letter-spacing: -1px;
             z-index: 5;
         }
 
@@ -146,7 +150,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 1s forwards 2s, pulse-glow 2s infinite;
+            animation: fadeInUp 1s forwards 1.8s, pulse-glow 2s infinite;
             z-index: 5;
         }
 
@@ -177,49 +181,54 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Sistemato e abbassato per non essere tagliato */
+        /* Spostato ancora più in basso e reso super pulito */
         .badge {
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 5px;
             color: #b3b3b3;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 25px; /* Abbassato ancora */
             margin-bottom: 25px;
             line-height: 1.4;
         }
 
-        /* --- LAYOUT DEL 18 SOPRA MATTEO --- */
+        /* --- LAYOUT 3D: 18 IN PRIMO PIANO, MATTEO DIETRO --- */
         .hero-group {
+            position: relative;
+            height: 150px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        /* Il 18 sta sopra ed è maestoso */
-        .number-18-top {
-            font-size: 7rem;
+        /* Matteo sta DIETRO (Sottoimpressione) */
+        .name-background {
+            position: absolute;
+            font-size: 4rem;
             font-weight: 900;
+            color: rgba(255, 255, 255, 0.15); /* Più scuro e fuso nello sfondo */
+            letter-spacing: 2px;
+            z-index: 1; /* Sotto al 18 */
+            text-transform: uppercase;
+            pointer-events: none;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Il 18 sta davanti (Sopraimpressione) ed è enorme */
+        .number-18-foreground {
+            position: absolute;
+            font-size: 9.5rem;
+            font-weight: 950;
             background: linear-gradient(135deg, #ffffff 0%, #888888 45%, #ffffff 50%, #888888 55%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 0.95;
-            letter-spacing: -2px;
-            filter: drop-shadow(0px 8px 15px rgba(255, 255, 255, 0.2));
-            margin-bottom: 5px;
-        }
-
-        /* Matteo sta subito sotto */
-        .name-under {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.15);
-            text-transform: uppercase;
             line-height: 1;
+            letter-spacing: -4px;
+            z-index: 2; /* Sopra a Matteo */
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.25));
+            pointer-events: none;
         }
 
         .divider {
@@ -326,10 +335,10 @@
     <div id="main-card">
         <div class="badge">Ti aspetto per festeggiare</div>
         
-        <!-- LAYOUT ORDINATO: 18 SOPRA, MATTEO SOTTO -->
+        <!-- LAYOUT 3D: 18 SOPRA AL TESTO MATTEO -->
         <div class="hero-group">
-            <div class="number-18-top">18</div>
-            <div class="name-under">MATTEO</div>
+            <div class="name-background">MATTEO</div>
+            <div class="number-18-foreground">18</div>
         </div>
         
         <div class="divider"></div>
@@ -423,7 +432,7 @@
         });
 
         function startReveal() {
-            // Avvia e attiva l'audio della canzone ESCLUSIVAMENTE tramite il click su "Apri l'invito"
+            // Avvia la musica
             if (player && typeof player.playVideo === 'function') {
                 player.playVideo();
                 isPlaying = true;
