@@ -32,8 +32,8 @@
             right: 20px;
             width: 55px;
             height: 55px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.85);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -42,7 +42,7 @@
             z-index: 100;
             opacity: 0;
             transition: all 0.5s ease;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
         }
 
         #music-control.visible {
@@ -71,7 +71,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #151515 0%, #020202 100%);
+            background: radial-gradient(circle, #141414 0%, #020202 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -86,10 +86,10 @@
         .suspense-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 40px;
             color: #ffffff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1.2s forwards 0.3s;
@@ -97,11 +97,9 @@
             z-index: 5;
         }
 
-        /* Sfere cadenti (Sfera Ebbasta style) */
+        /* Sfere cadenti (Nere e Argentate) */
         .falling-sphere {
             position: absolute;
-            width: 30px;
-            height: 30px;
             border-radius: 50%;
             pointer-events: none;
             z-index: 2;
@@ -162,7 +160,7 @@
             max-width: 460px;
             width: 92%;
             background: linear-gradient(145deg, #0a0a0a 0%, #171717 100%);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.18);
             border-radius: 28px;
             padding: 50px 35px;
             text-align: center;
@@ -184,44 +182,40 @@
             letter-spacing: 7px;
             color: #b3b3b3;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        /* --- NUOVO GRUPPO 3D IN SOVRAPPOSIZIONE --- */
+        /* --- NUOVO GRUPPO VERTICALE: 18 SOPRA, MATTEO SOTTO --- */
         .hero-group {
-            position: relative;
-            height: 200px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
         }
 
-        /* Il 18 sta dietro ed è gigantesco */
-        .number-18-bg {
-            position: absolute;
-            font-size: 11.5rem;
+        /* Il 18 sta sopra ed è enorme */
+        .number-18-top {
+            font-size: 8.5rem;
             font-weight: 900;
-            background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #777777 45%, #ffffff 50%, #777777 55%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            letter-spacing: -6px;
-            z-index: 1;
-            pointer-events: none;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+            letter-spacing: -3px;
+            filter: drop-shadow(0px 8px 20px rgba(255, 255, 255, 0.25));
+            margin-bottom: 5px;
         }
 
-        /* Matteo sta davanti ed è leggibile */
-        .name-foreground {
-            position: relative;
-            font-size: 4rem;
+        /* Matteo sta subito sotto */
+        .name-under {
+            font-size: 4.2rem;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: -1px;
-            z-index: 2;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 30px rgba(255,255,255,0.25);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 0 25px rgba(255,255,255,0.2);
             text-transform: uppercase;
+            line-height: 1;
         }
 
         .divider {
@@ -232,7 +226,7 @@
         }
 
         .date {
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: #ffffff;
             margin-bottom: 30px;
@@ -241,7 +235,7 @@
         }
 
         .location-info {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #e0e0e0;
             margin-bottom: 40px;
             line-height: 1.8;
@@ -249,13 +243,13 @@
 
         .location-name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #ffffff;
             margin-top: 5px;
             margin-bottom: 5px;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+            text-shadow: 0 0 10px rgba(255,255,255,0.15);
         }
 
         /* --- PULSANTI AGGRANDITI --- */
@@ -310,7 +304,7 @@
 </head>
 <body>
 
-    <iframe id="audio-player" width="0" height="0" src="" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    <div id="yt-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px;"></div>
 
     <div id="music-control" onclick="toggleMusic()">
         <i id="music-icon" class="fas fa-headphones"></i>
@@ -325,8 +319,8 @@
         <div class="badge">Ti aspetto per festeggiare</div>
         
         <div class="hero-group">
-            <div class="number-18-bg">18</div>
-            <div class="name-foreground">MATTEO</div>
+            <div class="number-18-top">18</div>
+            <div class="name-under">MATTEO</div>
         </div>
         
         <div class="divider"></div>
@@ -336,7 +330,7 @@
         <div class="location-info">
             Presso<br>
             <div class="location-name">Etna Country</div>
-            <span style="font-size: 0.95rem; color: #a6a6a6; font-weight: 700;">Via Etnea, 396 - Tremestieri Etneo (CT)</span>
+            <span style="font-size: 1rem; color: #a6a6a6; font-weight: 700;">Via Etnea, 396 - Tremestieri Etneo (CT)</span>
         </div>
 
         <div class="btn-container">
@@ -349,64 +343,95 @@
         </div>
     </div>
 
-    <script>
-        const youtubeId = "NfF5831_M3g"; 
-        const player = document.getElementById('audio-player');
-        const musicControl = document.getElementById('music-control');
-        const musicIcon = document.getElementById('music-icon');
-        let isPlaying = false;
+    <script src="https://www.youtube.com/iframe_api"></script>
 
-        // Funzione per creare la pioggia di "Sfere" (Sfera Ebbasta)
+    <script>
+        let player;
+        let isPlaying = false;
+        const youtubeId = "JFOLJwOoorQ"; // La tua canzone "Happy Birthday" di Sfera Ebbasta
+
+        // Inizializza il player di YouTube in modo sicuro
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-player', {
+                height: '1',
+                width: '1',
+                videoId: youtubeId,
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'loop': 1,
+                    'playlist': youtubeId
+                },
+                events: {
+                    'onReady': () => { console.log("Player pronto!"); }
+                }
+            });
+        }
+
+        // Crea la pioggia di sfere NERE e ARGENTATE
         function createFallingSpheres() {
             const introScreen = document.getElementById('intro-screen');
-            const colors = ['#ff0033', '#e0e0e0', '#ffffff', '#8a001a', '#b0b0b0']; // Colori: rossi, argenti, bianchi
             
             for (let i = 0; i < 45; i++) {
                 setTimeout(() => {
                     const sphere = document.createElement('div');
                     sphere.classList.add('falling-sphere');
                     
-                    // Impostazioni casuali per farle cadere con stile
-                    const size = Math.random() * 25 + 15; // Dimensioni miste
+                    const size = Math.random() * 25 + 15;
                     sphere.style.width = `${size}px`;
                     sphere.style.height = `${size}px`;
                     sphere.style.left = `${Math.random() * 100}vw`;
-                    sphere.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    sphere.style.boxShadow = `0 0 15px ${sphere.style.backgroundColor}`;
                     
-                    // Durata della caduta
+                    // 50% Nere con bordo argento lucido, 50% Argento/Bianco brillante
+                    if (Math.random() > 0.5) {
+                        // SFERA NERA METALLICA
+                        sphere.style.backgroundColor = '#151515';
+                        sphere.style.border = '2px solid #b0b0b0';
+                        sphere.style.boxShadow = '0 0 12px rgba(255, 255, 255, 0.2)';
+                    } else {
+                        // SFERA ARGENTATA LUMINOSA
+                        sphere.style.backgroundColor = '#e0e0e0';
+                        sphere.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
+                    }
+                    
                     const duration = Math.random() * 2.5 + 2.5;
                     sphere.style.animationDuration = `${duration}s`;
                     
                     introScreen.appendChild(sphere);
                     
-                    // Rimuove la sfera dopo che è caduta
                     setTimeout(() => {
                         sphere.remove();
                     }, duration * 1000);
-                }, i * 120); // Vengono generate una dopo l'altra
+                }, i * 120);
             }
         }
 
-        // Avvia la pioggia di sfere appena si apre la pagina
         window.addEventListener('DOMContentLoaded', () => {
             createFallingSpheres();
         });
 
         function startReveal() {
-            // Avvio audio super sbloccato dal click
-            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
-            isPlaying = true;
+            // Sblocca e avvia la canzone di Sfera Ebbasta direttamente tramite l'azione del click
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+                isPlaying = true;
+            }
             
-            // Attiva il pulsante delle cuffie in alto a destra
+            // Attiva il tasto cuffie in alto a destra
+            const musicControl = document.getElementById('music-control');
             musicControl.classList.add('visible', 'playing');
 
-            // Avvia dissolvenza dell'intro
+            // Avvia la dissolvenza
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
             intro.style.visibility = 'hidden';
 
-            // Svela la card
+            // Mostra la card dell'invito
             setTimeout(() => {
                 document.getElementById('main-card').classList.add('reveal');
                 document.body.style.overflow = 'auto';
@@ -414,13 +439,20 @@
         }
 
         function toggleMusic() {
+            const musicIcon = document.getElementById('music-icon');
+            const musicControl = document.getElementById('music-control');
+
             if (isPlaying) {
-                player.src = "";
+                if (player && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
                 musicIcon.className = "fas fa-volume-mute";
                 musicControl.classList.remove('playing');
                 isPlaying = false;
             } else {
-                player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`;
+                if (player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                }
                 musicIcon.className = "fas fa-headphones";
                 musicControl.classList.add('playing');
                 isPlaying = true;
